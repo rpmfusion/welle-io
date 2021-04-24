@@ -1,7 +1,7 @@
 Name:           welle-io
 
 Version:        2.2
-Release:        10%{?dist}
+Release:        11%{?dist}
 Summary:        Receiver for DAB and DAB+ broadcast radio
 
 License:        GPLv2+
@@ -66,6 +66,9 @@ desktop-file-install \
 %doc README.md AUTHORS THANKS
 
 %changelog
+* Sat Apr 24 2021 Leigh Scott <leigh123linux@gmail.com> - 2.2-11
+- Rebuilt for removed libstdc++ symbol (#1937698)
+
 * Sun Feb 28 2021 Marcus Müller <marcus@hostalia.de> - 2.2-10
 - Changed welle-io/html directory ownership structure
 

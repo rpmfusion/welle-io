@@ -1,7 +1,7 @@
 Name:           welle-io
 
 Version:        2.4
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Receiver for DAB and DAB+ broadcast radio
 
 License:        GPLv2+
@@ -68,6 +68,9 @@ desktop-file-install \
 %doc README.md AUTHORS THANKS
 
 %changelog
+* Wed Nov 08 2023 Leigh Scott <leigh123linux@gmail.com> - 2.4-3
+- Rebuild for new faad2 version
+
 * Wed Aug 02 2023 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 2.4-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
 

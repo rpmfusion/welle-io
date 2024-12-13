@@ -1,7 +1,7 @@
 Name:           welle-io
 
-Version:        2.4
-Release:        5%{?dist}
+Version:        2.5
+Release:        1%{?dist}
 Summary:        Receiver for DAB and DAB+ broadcast radio
 
 License:        GPLv2+
@@ -13,10 +13,11 @@ BuildRequires:  cmake
 BuildRequires:  gcc-c++
 # Freedesktop build dependencies
 BuildRequires:  desktop-file-utils
+BuildRequires:	libappstream-glib
 # Qt build dependencies
-BuildRequires:  qt5-qtcharts-devel
-BuildRequires:  qt5-qtmultimedia-devel
-BuildRequires:  qt5-qtquickcontrols2-devel
+BuildRequires:  qt6-qtcharts-devel
+BuildRequires:  qt6-qtmultimedia-devel
+BuildRequires:  qt6-qtquickcontrols2-devel
 # SDR hardware interface dependencies
 BuildRequires:  SoapySDR-devel
 BuildRequires:  rtl-sdr-devel
@@ -54,20 +55,26 @@ desktop-file-install \
     --delete-original \
     --dir=%{buildroot}%{_datadir}/applications \
     %{buildroot}/%{_datadir}/applications/welle-io.desktop
+appstream-util validate-relax --nonet \
+	%{buildroot}%{_metainfodir}/io.welle.welle_io.metainfo.xml
 
 %files
+%doc README.md AUTHORS THANKS
 %license COPYING
 %{_bindir}/welle-io
 %{_bindir}/welle-cli
 %{_datadir}/applications/welle-io.desktop
 %{_datadir}/icons/hicolor/*/apps/welle-io.png
 %{_datadir}/welle-io/
-%{_mandir}/man1/welle-cli.1.gz
-%{_mandir}/man1/welle-io.1.gz
-
-%doc README.md AUTHORS THANKS
+%{_mandir}/man1/welle-cli.1.*
+%{_mandir}/man1/welle-io.1.*
+%{_metainfodir}/io.welle.welle_io.metainfo.xml
 
 %changelog
+* Fri Dec 13 2024 Leigh Scott <leigh123linux@gmail.com> - 2.5-1
+- New upstream release
+- Switch to qt6
+
 * Fri Aug 02 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 2.4-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
 

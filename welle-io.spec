@@ -1,7 +1,7 @@
 Name:           welle-io
 
-Version:        2.5
-Release:        2%{?dist}
+Version:        2.7
+Release:        1%{?dist}
 Summary:        Receiver for DAB and DAB+ broadcast radio
 
 License:        GPLv2+
@@ -10,7 +10,9 @@ Source0:        https://github.com/AlbrechtL/welle.io/archive/v%{version}/%{name
 
 # Basic build dependencies
 BuildRequires:  cmake
+BuildRequires:  ninja-build
 BuildRequires:  gcc-c++
+BuildRequires:  xxd
 # Freedesktop build dependencies
 BuildRequires:  desktop-file-utils
 BuildRequires:	libappstream-glib
@@ -41,36 +43,39 @@ rm -rf src/libs/faad2
 rm -rf src/libs/mpg123
 
 %build
-%cmake -DSOAPYSDR=1 -DRTLSDR=1
+%cmake -GNinja -DSOAPYSDR=1 -DRTLSDR=1
 %cmake_build
-
-%check
-%ctest
-
 
 %install
 %cmake_install
+
+%check
 desktop-file-install \
     --add-category="AudioVideo" \
     --delete-original \
     --dir=%{buildroot}%{_datadir}/applications \
-    %{buildroot}/%{_datadir}/applications/welle-io.desktop
+    %{buildroot}/%{_datadir}/applications/io.welle.welle-gui.desktop
 appstream-util validate-relax --nonet \
-	%{buildroot}%{_metainfodir}/io.welle.welle_io.metainfo.xml
+	%{buildroot}%{_metainfodir}/io.welle.welle-gui.appdata.xml
 
 %files
 %doc README.md AUTHORS THANKS
 %license COPYING
 %{_bindir}/welle-io
 %{_bindir}/welle-cli
-%{_datadir}/applications/welle-io.desktop
-%{_datadir}/icons/hicolor/*/apps/welle-io.png
-%{_datadir}/welle-io/
+%{_datadir}/applications/io.welle.welle-gui.desktop
+%{_datadir}/icons/hicolor/*/apps/io.welle.welle-gui.png
 %{_mandir}/man1/welle-cli.1.*
 %{_mandir}/man1/welle-io.1.*
-%{_metainfodir}/io.welle.welle_io.metainfo.xml
+%{_metainfodir}/io.welle.welle-gui.appdata.xml
 
 %changelog
+* Wed Mar 19 2025 Leigh Scott <leigh123linux@gmail.com> - 2.7-1
+- Update to 2.7
+- Use ninja-build as it's output is easier to read
+- Add new build requires xxd
+- Don't use ctest as no tests found
+
 * Wed Jan 29 2025 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 2.5-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_42_Mass_Rebuild
 

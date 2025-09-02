@@ -1,7 +1,7 @@
 Name:           welle-io
 
 Version:        2.7
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Receiver for DAB and DAB+ broadcast radio
 
 License:        GPLv2+
@@ -29,6 +29,9 @@ BuildRequires:  lame-devel
 BuildRequires:  mpg123-devel
 # faad2 is in rpmfusion
 BuildRequires:  faad2-devel
+
+# https://bugzilla.rpmfusion.org/show_bug.cgi?id=7308#c2
+Requires:       qt6-qt5compat
 
 %description
 Receive digital audio broadcasts with your computer: welle.io is an open source
@@ -70,6 +73,9 @@ appstream-util validate-relax --nonet \
 %{_metainfodir}/io.welle.welle-gui.appdata.xml
 
 %changelog
+* Tue Sep 02 2025 Leigh Scott <leigh123linux@gmail.com> - 2.7-3
+- Add missing requires
+
 * Sun Jul 27 2025 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 2.7-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_43_Mass_Rebuild
 

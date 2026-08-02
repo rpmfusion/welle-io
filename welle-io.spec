@@ -46,7 +46,11 @@ rm -rf src/libs/faad2
 rm -rf src/libs/mpg123
 
 %build
-%cmake -GNinja -DSOAPYSDR=1 -DRTLSDR=1
+%cmake \
+  -GNinja \
+  -DSOAPYSDR=1 \
+  -DRTLSDR=1 \
+  -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 %cmake_build
 
 %install

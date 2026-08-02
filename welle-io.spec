@@ -1,7 +1,7 @@
 Name:           welle-io
 
 Version:        2.7
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Receiver for DAB and DAB+ broadcast radio
 
 License:        GPLv2+
@@ -73,6 +73,9 @@ appstream-util validate-relax --nonet \
 %{_metainfodir}/io.welle.welle-gui.appdata.xml
 
 %changelog
+* Sun Aug 02 2026 RPM Fusion Release Engineering <leigh123linux@rpmfusion.org> - 2.7-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_45_Mass_Rebuild
+
 * Mon Feb 02 2026 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 2.7-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_44_Mass_Rebuild
 
